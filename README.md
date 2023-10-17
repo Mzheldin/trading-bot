@@ -10,3 +10,4 @@ The idea is quite simple - if the opponent has spent more money, then the probab
 Depending on this, bidder can either increase the current bid at the expense of one and future bids, or by reducing the current bid, increase the future bid. 
 At the same time, zero bets are not provided because the strategy is designed to win the average bet on the distance. 
 This is not the most creative approach, but when tested, it showed better results than others that came to my mind.
+The target directory contains .jar
