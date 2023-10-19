@@ -40,14 +40,12 @@ public class BidderImpl implements Bidder {
     @Override
     public void init(int quantity, int cash) {
         checkNegativeInitParams(quantity, cash);
-        if (quantity == 0)
-            return;
         totalCash = cash;
         totalQuantity = quantity;
         ownCashLeft = cash;
         otherCashLeft = cash;
         amountWon = 0;
-        int rounds = quantity % 2 == 0 ? quantity / 2 : quantity / 2 + 1;
+        int rounds = int rounds = calculateRoundsNumber(quantity);
         ownBidsPerRound = new int[rounds];
         average = calculateAverage(cash, rounds);
         fillRoundsByPossibleBids(ownBidsPerRound, average, cash);
@@ -132,6 +130,17 @@ public class BidderImpl implements Bidder {
         return ownBidsPerRound[round];
     }
 
+     /**
+     * Calculation number of auction rounds depending on total amount of quantity units and one batch size (2).
+     * @param quantity total amount of quantity units
+     * @return number of auction rounds
+     */
+    private int calculateRoundsNumber(int quantity) {
+        if (quantity > 0)
+            return quantity % 2 == 0 ? quantity / 2 : quantity / 2 + 1;
+        return 0;
+    }
+
     /**
      * Calculating an average of total cash and total quantity, that is rounded to nearest or bigger integer.
      * The case of quantity <= 2 and single round of bids is separated due to the calculation of division remainder.
@@ -173,6 +182,11 @@ public class BidderImpl implements Bidder {
         }
     }
 
+    /**
+     * Checking signs of quantity and cash. Can not be less than 0.
+     * @param quantity amount of quantity units for the auction
+     * @param cash amount of available monetary units
+     */
     private void checkNegativeInitParams(int quantity, int cash) {
         if (quantity < 0)
             throw new IllegalArgumentException("Total amount of quantity units can not be less than 0");
