@@ -39,6 +39,7 @@ public class BidderImpl implements Bidder {
      */
     @Override
     public void init(int quantity, int cash) {
+        checkNegativeInitParams(quantity, cash);
         if (quantity == 0)
             return;
         totalCash = cash;
@@ -171,4 +172,11 @@ public class BidderImpl implements Bidder {
                 position = 0;
         }
     }
+
+    private void checkNegativeInitParams(int quantity, int cash) {
+        if (quantity < 0)
+            throw new IllegalArgumentException("Total amount of quantity units can not be less than 0");
+        if (cash < 0)
+            throw new IllegalArgumentException("Initial amount of monetary units can not be less than 0");
+    }    
 }
