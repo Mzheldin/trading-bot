@@ -45,7 +45,7 @@ public class BidderImpl implements Bidder {
         ownCashLeft = cash;
         otherCashLeft = cash;
         amountWon = 0;
-        int rounds = int rounds = calculateRoundsNumber(quantity);
+        int rounds = calculateRoundsNumber(quantity);
         ownBidsPerRound = new int[rounds];
         average = calculateAverage(cash, rounds);
         fillRoundsByPossibleBids(ownBidsPerRound, average, cash);
