@@ -164,6 +164,8 @@ public class BidderImpl implements Bidder {
      * @param cash amount of monetary units available at the time of the start of trading
      */
     private void fillRoundsByPossibleBids(int[] rounds, int average, int cash) {
+        if (rounds.length == 0)
+            return;
         if (totalQuantity == 3) {
             rounds[0] = cash;
             return;
