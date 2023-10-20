@@ -1,6 +1,0 @@
-com\task\bot\service\impl\BidderImpl.class
-com\task\bot\ServletInitializer.class
-com\task\bot\dto\BidDTO.class
-com\task\bot\controller\BidderController.class
-com\task\bot\service\Bidder.class
-com\task\bot\BidderApplication.class
